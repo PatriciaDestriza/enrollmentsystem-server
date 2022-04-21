@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAcademicTermsTable extends Migration
+class CreateSchedulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAcademicTermsTable extends Migration
      */
     public function up()
     {
-        Schema::create('academic_terms', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('semName');
-            $table->foreignId('academicYearID');
-            $table->foreign('academicYearID')->references('id')->on('academic_years');
+            $table->string('day');
+            $table->time('startTime');
+            $table->time('endTime');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateAcademicTermsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_terms');
+        Schema::dropIfExists('schedules');
     }
 }

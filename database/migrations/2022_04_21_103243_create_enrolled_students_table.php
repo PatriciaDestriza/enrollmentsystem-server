@@ -15,6 +15,15 @@ class CreateEnrolledStudentsTable extends Migration
     {
         Schema::create('enrolled_students', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('studentID');
+            $table->foreign('studentID')->references('id')->on('students');
+            $table->foreignId('termID');
+            $table->foreign('termID')->references('id')->on('academic_terms');
+            $table->foreignId('yearLevelID');
+            $table->foreign('yearLevelID')->references('id')->on('year_levels');
+            $table->foreignId('blockID');
+            $table->foreign('blockID')->references('id')->on('blocks');
+            $table->boolean('isRegular');
             $table->timestamps();
         });
     }
