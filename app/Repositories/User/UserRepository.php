@@ -4,6 +4,7 @@ namespace App\Repositories\User;
 
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
@@ -27,6 +28,28 @@ class UserRepository implements UserRepositoryInterface
             echo "user created";
         } catch (Exception $e) {
             return response($e->getMessage(), 400);
+        }
+    }
+
+    public function createToken($tokenType)
+    {
+        return Auth::user()->createToken('authToken');
+    }
+
+    public function login($data)
+    {
+        try {
+            if (!Auth::attempt($data)) {
+                return response(['message' => 'Login credentials mismatch.'], 401);
+            }
+            $accessToken = $this->createToken('accessToken')->accessToken;
+
+            return response([
+                'user' => Auth::user(),
+                'access_token' => $accessToken
+            ]);
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()]);
         }
     }
 }

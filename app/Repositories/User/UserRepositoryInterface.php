@@ -6,4 +6,5 @@ interface UserRepositoryInterface
 {
 
     public function createUser($data);
+    public function login($data);
 }

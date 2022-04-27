@@ -44,6 +44,12 @@ class UserController extends Controller
         return $this->repository->createUser($data);
     }
 
+    public function login(Request $request)
+    {
+        $data = $request->all();
+        return $this->repository->login($data);
+    }
+
     /**
      * Display the specified resource.
      *
