@@ -19,7 +19,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
             $department->save();
             return response(['message' => 'Department successfuly created'], 200);
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 401);
+            return response(['message' => $e->getMessage()], 400);
         }
     }
 

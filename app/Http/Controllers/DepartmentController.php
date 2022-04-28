@@ -4,11 +4,15 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
+namespace App\Http\Controllers;
+
+use Symfony\Component\HttpFoundation\Request;
+
 use App\Repositories\Department\DepartmentRepositoryInterface;
 
 use App\Http\Controllers\Controller;
 
-class DepartmentsController extends Controller
+class DepartmentController extends Controller
 {
     private $repository;
     public function __construct(DepartmentRepositoryInterface $repository)

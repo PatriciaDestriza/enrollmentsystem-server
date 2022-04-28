@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use Illuminate\Http\Request;
 
-class TeachersController extends Controller
+class TeacherController extends Controller
 {
     private $repository;
     public function __construct(TeacherRepositoryInterface $repository)

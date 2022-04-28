@@ -20,7 +20,7 @@ class TeacherRepository implements TeacherRepositoryInterface
             $teacher->save();
             return response(['message' => 'Teacher created successfully.'], 200);
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 401);
+            return response(['message' => $e->getMessage()], 400);
         }
     }
 
