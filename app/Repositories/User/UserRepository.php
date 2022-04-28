@@ -13,7 +13,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = new User();
         try {
-
+            $user->accountType = $data['accountType'];
             $user->universityID = $data['universityID'];
             $user->firstName = $data['firstName'];
             $user->middleName = $data['middleName'];
@@ -31,9 +31,15 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function createToken($tokenType)
+    public function createToken($tokenType, $accountType)
     {
-        return Auth::user()->createToken('authToken');
+        if ($accountType == 'admin') {
+
+            return Auth::user()->createToken('authToken', ['admin']);
+        }
+        if ($accountType == 'student') {
+            return Auth::user()->createToken('authToken', ['student']);
+        }
     }
 
     public function login($data)
@@ -42,7 +48,9 @@ class UserRepository implements UserRepositoryInterface
             if (!Auth::attempt($data)) {
                 return response(['message' => 'Login credentials mismatch.'], 401);
             }
-            $accessToken = $this->createToken('accessToken')->accessToken;
+            $accountType = $data['accountType'];
+            echo 'account type is' . $accountType;
+            $accessToken = $this->createToken('accessToken', $accountType)->accessToken;
 
             return response([
                 'user' => Auth::user(),

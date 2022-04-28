@@ -35,15 +35,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/signup', [UserController::class, 'store']);
 Route::post('/login', [UserController::class, 'login']);
 
-Route::resource('/academic-years', AcademicYearController::class);
-Route::resource('/academic-terms', AcademicTermController::class);
-Route::resource('/departments', DepartmentController::class);
-Route::resource('/year-levels', YearLevelController::class);
-Route::resource('/schedules', ScheduleController::class);
-Route::resource('/teachers', TeacherController::class);
-Route::resource('/programs', ProgramController::class);
-Route::resource('/rooms', RoomController::class);
-Route::resource('/courses', CourseController::class);
-Route::resource('/student', StudentController::class);
-Route::resource('/enrolled-students', EnrolledStudentController::class);
-Route::resource('/blocks', BlockController::class);
+
+Route::group(['middleware' => 'auth:api', 'scope: admin'], function () {
+    Route::resource('/academic-years', AcademicYearController::class);
+    Route::resource('/academic-terms', AcademicTermController::class);
+    Route::resource('/departments', DepartmentController::class);
+    Route::resource('/year-levels', YearLevelController::class);
+    Route::resource('/schedules', ScheduleController::class);
+    Route::resource('/teachers', TeacherController::class);
+    Route::resource('/programs', ProgramController::class);
+    Route::resource('/rooms', RoomController::class);
+    Route::resource('/courses', CourseController::class);
+    Route::resource('/student', StudentController::class);
+    Route::resource('/enrolled-students', EnrolledStudentController::class);
+    Route::resource('/blocks', BlockController::class);
+});

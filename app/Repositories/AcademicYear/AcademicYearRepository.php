@@ -12,7 +12,6 @@ class AcademicYearRepository implements AcademicYearRepositoryInterface
         $acadYear = new AcademicYear;
 
         try {
-
             $acadYear->startYear = $data['startYear'];
             $acadYear->endYear = $data['endYear'];
             $acadYear->save();
