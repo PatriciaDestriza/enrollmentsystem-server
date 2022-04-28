@@ -25,7 +25,10 @@ class UserRepository implements UserRepositoryInterface
             $user->username = $data['username'];
             $user->password = Hash::make($data['password']);
             $user->save();
-            echo "user created";
+            return response([
+                'message' => 'Successfully created user account.',
+                'user' => $user
+            ], 200);
         } catch (Exception $e) {
             return response($e->getMessage(), 400);
         }
@@ -57,7 +60,7 @@ class UserRepository implements UserRepositoryInterface
                 'access_token' => $accessToken
             ]);
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()]);
+            return response(['message' => $e->getMessage()], 400);
         }
     }
 }
