@@ -38,9 +38,11 @@ class UserRepository implements UserRepositoryInterface
     {
         if ($accountType == 'admin') {
 
+            echo 'creating admin';
             return Auth::user()->createToken('authToken', ['admin']);
         }
         if ($accountType == 'student') {
+            echo 'creating student';
             return Auth::user()->createToken('authToken', ['student']);
         }
     }

@@ -49,4 +49,23 @@ class UserTest extends TestCase
         $this->assertEquals('test@email.com', $user['email']);
         $this->assertEquals('test username', $user['username']);
     }
+
+    public function test_student_cant_do_admin_taskts()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = User::factory()->make();
+
+        echo $user;
+
+        $this->actingAs($user, 'api');
+
+        $data = [
+            'startYear' => 2022,
+            'endYear' => 2023
+        ];
+
+        $response = $this->post('api/academic-years', $data, ['HTTP_ACCEPT' => 'application/json']);
+        $response->assertStatus(200);
+    }
 }
