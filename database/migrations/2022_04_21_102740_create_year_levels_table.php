@@ -16,6 +16,7 @@ class CreateYearLevelsTable extends Migration
         Schema::create('year_levels', function (Blueprint $table) {
             $table->id();
             $table->enum('yearName', ['First Year', 'Second Year', 'Third Year', 'Fourth Year', 'Fifth Year']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

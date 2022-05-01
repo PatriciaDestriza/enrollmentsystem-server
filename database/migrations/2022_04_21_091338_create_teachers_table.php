@@ -20,6 +20,7 @@ class CreateTeachersTable extends Migration
             $table->string('lastName');
             $table->foreignId('departmentID');
             $table->foreign('departmentID')->references('id')->on('departments');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

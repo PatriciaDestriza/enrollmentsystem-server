@@ -26,8 +26,14 @@ class DepartmentRepository implements DepartmentRepositoryInterface
     public function updateDepartment($data)
     {
     }
-    public function getAllDepartments($data)
+    public function getAllDepartments()
     {
+        try {
+
+            return Department::all();
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 401);
+        }
     }
 
     public function deleteDepartment($data)

@@ -24,6 +24,7 @@ class CreateEnrolledStudentsTable extends Migration
             $table->foreignId('blockID');
             $table->foreign('blockID')->references('id')->on('blocks');
             $table->boolean('isRegular');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
