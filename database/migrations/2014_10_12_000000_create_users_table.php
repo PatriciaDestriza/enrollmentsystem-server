@@ -15,10 +15,19 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->enum('accountType', ['admin', 'student']);
+            $table->string('universityID')->unique();
+            $table->string('firstName');
+            $table->string('middleName');
+            $table->string('lastName');
+            $table->date('birthDate');
+            $table->string('address');
+            $table->string('phoneNumber');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('username')->unique();
             $table->string('password');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('courseName');
-            $table->string('courseCode');
+            $table->string('courseCode')->unique();
             $table->foreignId('teacherID');
             $table->foreign('teacherID')->references('id')->on('teachers');
             $table->foreignId('roomID');

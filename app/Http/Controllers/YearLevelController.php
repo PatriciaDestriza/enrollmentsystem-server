@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\User\UserRepositoryInterface;
 
-class UserController extends Controller
+class YearLevelController extends Controller
 {
-    private $repository;
-    public function __construct(UserRepositoryInterface $repository)
-    {
-        $this->repository = $repository;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -40,14 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        return $this->repository->createUser($data);
-    }
-
-    public function login(Request $request)
-    {
-        $data = $request->all();
-        return $this->repository->login($data);
+        //
     }
 
     /**
@@ -58,6 +45,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
