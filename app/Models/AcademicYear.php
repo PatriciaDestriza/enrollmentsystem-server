@@ -14,4 +14,9 @@ class AcademicYear extends Model
         'startYear',
         'endYear'
     ];
+
+    public function academicTerm()
+    {
+        return $this->hasOne(AcademicYear::class);
+    }
 }

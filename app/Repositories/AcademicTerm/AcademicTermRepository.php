@@ -30,7 +30,7 @@ class AcademicTermRepository implements AcademicTermRepositoryInterface
     public function getAllAcademicTerms()
     {
         try {
-            return AcademicTerm::all();
+            return AcademicTerm::with('academicYear')->get();
         } catch (Exception $e) {
             return response(['message' => $e->getMessage()], 401);
         }
