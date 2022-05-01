@@ -15,7 +15,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'accountType' => 'student',
+            'accountType' => 'admin',
             'universityID' => Str::random(11),
             'firstName' => $this->faker->name(),
             'middleName' => $this->faker->name(),

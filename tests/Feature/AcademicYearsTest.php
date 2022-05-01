@@ -18,13 +18,15 @@ class AcademicYearsTest extends TestCase
 
         $user = User::factory()->make();
 
+        echo $user;
+
         $this->actingAs($user, 'api');
         $data = [
             'startYear' => 2022,
             'endYear' => 2023
         ];
 
-        $response = $this->post('api/academic-years', $data, ['HTTP_ACCEPT' => 'application/json']);
+        $response = $this->post('api/admin/academic-years', $data, ['HTTP_ACCEPT' => 'application/json']);
         $response->assertStatus(200);
     }
 }

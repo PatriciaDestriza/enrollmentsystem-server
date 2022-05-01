@@ -36,7 +36,7 @@ Route::post('/signup', [UserController::class, 'store']);
 Route::post('/login', [UserController::class, 'login']);
 
 
-Route::group(['middleware' => 'auth:api', 'scope: admin'], function () {
+Route::group(['middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'admin', 'middleware' => 'is_admin', 'as' => 'admin.'], function () {
         Route::resource('/academic-years', AcademicYearController::class);
