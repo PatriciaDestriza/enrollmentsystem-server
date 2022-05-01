@@ -17,7 +17,7 @@ class isAdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!auth()->check() || !auth()->user()->accountType == 'admin') {
-            return response(['message' => 'Account is not an admin'], 401);
+            return response(['message' => 'Account is not an admin'], 403);
         }
         return $next($request);
     }
