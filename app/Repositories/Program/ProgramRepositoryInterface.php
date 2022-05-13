@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Course;
+namespace App\Repositories\Program;
 
 
-interface CourseRepositoryInterface
+interface ProgramRepositoryInterface
 {
     public function createCourse($data);
-    public function getCourses();
     public function editCourse($id);
+    public function getCourses();
     public function deleteCourse($id);
 }
