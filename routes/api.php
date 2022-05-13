@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::resource('/blocks', BlockController::class);
     });
 
+
     Route::group(['prefix' => 'student'], function () {
     });
 });
