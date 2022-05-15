@@ -41,7 +41,6 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         return $this->repository->createProgram($data);
     }
 
@@ -87,6 +86,6 @@ class ProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+       return $this->$repository->deleteProgram($id);
     }
 }

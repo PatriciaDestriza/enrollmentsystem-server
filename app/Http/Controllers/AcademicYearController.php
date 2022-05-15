@@ -88,6 +88,6 @@ class AcademicYearController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->repository->deleteAcademicYear($id);
     }
 }
