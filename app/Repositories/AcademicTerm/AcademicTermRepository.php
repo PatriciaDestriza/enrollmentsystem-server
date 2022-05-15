@@ -26,4 +26,11 @@ class AcademicTermRepository implements AcademicTermRepositoryInterface
     public function updateAcademicTerm($data)
     {
     }
+    public function deleteAcademicTerm($id)
+    {
+        try {
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
 }

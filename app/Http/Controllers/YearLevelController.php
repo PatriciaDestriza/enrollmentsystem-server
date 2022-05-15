@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class YearLevelController extends Controller
 {
+
+    public function __construct(YearLevelRepos)
+    {
+        
+    }
     /**
      * Display a listing of the resource.
      *
