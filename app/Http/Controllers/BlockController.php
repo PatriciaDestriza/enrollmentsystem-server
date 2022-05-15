@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Block\BlockRepositoryInterface;
 use Illuminate\Http\Request;
 
 class BlockController extends Controller
 {
+    private $repository
+    public function __construct(BlockRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,8 @@ class BlockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->createBlock($data);
     }
 
     /**
@@ -79,6 +86,6 @@ class BlockController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $repository->deleteBlock($id);
     }
 }

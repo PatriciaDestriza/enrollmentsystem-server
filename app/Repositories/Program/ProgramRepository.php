@@ -4,16 +4,16 @@ namespace App\Repositories\Program;
 
 class ProgramRepository implements ProgramRepositoryInterface
 {
-    public function createCourse($data)
+    public function createProgram($data)
     {
     }
-    public function editCourse($id)
+    public function editProgram($id)
     {
     }
-    public function getCourses()
+    public function getPrograms()
     {
     }
-    public function deleteCourse($id)
+    public function deleteProgram($id)
     {
     }
 }

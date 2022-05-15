@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Course\CourseRepositoryInterface;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
+    private $repository;
+    public function __construct(CourseRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -79,6 +85,6 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->repository->deleteCourse($id);
     }
 }

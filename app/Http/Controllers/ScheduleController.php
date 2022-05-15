@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Schedule\ScheduleRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
+    private $repository;
+    public function __construct(ScheduleRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,8 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->deleteSchedule($data);
     }
 
     /**
@@ -79,6 +86,6 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->$repository->deleteSchedule($id);
     }
 }

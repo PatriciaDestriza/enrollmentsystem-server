@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class EnrolledStudentController extends Controller
 {
+    private $repository;
+    public function __construct(EnrolledStudetRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +39,8 @@ class EnrolledStudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->createEnrolledStudent($data);
     }
 
     /**
@@ -79,6 +85,6 @@ class EnrolledStudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->deleteEnrolledStudent($id);
     }
 }

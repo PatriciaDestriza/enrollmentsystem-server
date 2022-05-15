@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Program\ProgramRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller
 {
+    private $repository;
+    public function __construct(ProgramRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,8 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->createProgram($data);
     }
 
     /**
@@ -79,6 +86,6 @@ class ProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->$repository->deleteProgram($id);
     }
 }
