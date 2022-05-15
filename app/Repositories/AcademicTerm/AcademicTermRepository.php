@@ -26,6 +26,13 @@ class AcademicTermRepository implements AcademicTermRepositoryInterface
     public function updateAcademicTerm($data)
     {
     }
+
+    public function getAllAcademicTerms()
+    {
+        try {
+            return AcademicTerm::with('academicYear')->get();
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 401);
     public function deleteAcademicTerm($id)
     {
         try {

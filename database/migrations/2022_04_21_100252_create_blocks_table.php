@@ -19,6 +19,7 @@ class CreateBlocksTable extends Migration
             $table->string('blockCode');
             $table->foreignId('programID');
             $table->foreign('programID')->references('id')->on('programs');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

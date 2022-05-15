@@ -24,6 +24,13 @@ class AcademicYearRepository implements AcademicYearRepositoryInterface
     public function updateAcademicYear($data)
     {
     }
+
+    public function getAllAcademicYears()
+    {
+        try {
+            return AcademicYear::all();
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 401);
     public function deleteAcademicYear($id)
     {
         try {

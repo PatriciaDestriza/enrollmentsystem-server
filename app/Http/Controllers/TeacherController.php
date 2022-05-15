@@ -19,7 +19,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getAllTeachers();
     }
 
     /**

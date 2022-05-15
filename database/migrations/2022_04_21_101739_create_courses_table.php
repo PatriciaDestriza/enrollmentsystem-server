@@ -23,6 +23,7 @@ class CreateCoursesTable extends Migration
             $table->foreign('roomID')->references('id')->on('rooms');
             $table->foreignId('scheduleID');
             $table->foreign('scheduleID')->references('id')->on('schedules');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

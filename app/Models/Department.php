@@ -14,4 +14,9 @@ class Department extends Model
         'collegeName',
         'collegeCode'
     ];
+
+    public function teacher()
+    {
+        return $this->hasMany(Teacher::class);
+    }
 }

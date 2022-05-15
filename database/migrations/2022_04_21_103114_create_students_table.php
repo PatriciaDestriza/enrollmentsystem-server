@@ -18,6 +18,7 @@ class CreateStudentsTable extends Migration
             $table->foreignId('userID');
             $table->foreign('userID')->references('id')->on('users');
             $table->boolean('isActivated');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

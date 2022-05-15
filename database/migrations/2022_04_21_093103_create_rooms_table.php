@@ -17,6 +17,7 @@ class CreateRoomsTable extends Migration
             $table->id();
             $table->string('roomName');
             $table->string('roomCode');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
