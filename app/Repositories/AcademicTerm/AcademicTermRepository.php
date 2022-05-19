@@ -14,6 +14,13 @@ class AcademicTermRepository implements AcademicTermRepositoryInterface
         try {
             $acadTerm = new AcademicTerm;
 
+            $termExists = AcademicTerm::where('academicYearId', '=', $data['academicYearId'])
+                ->where('semName', '=', $data['semName']);
+
+            if (!is_null($termExists)) {
+                throw new Exception('Academic Term already exists.');
+            }
+
             $acadTerm->semName = $data['semName'];
             $acadTerm->academicYearID = $data['academicYearId'];
             $acadTerm->save();

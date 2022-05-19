@@ -17,7 +17,7 @@ class UserRepository implements UserRepositoryInterface
             $username = $data['username'];
             $usernamExists = User::where('username', '=', $username)->first();
             if (!is_null($usernamExists)) {
-                throw new Exception('Username already Exists');
+                throw new Exception('Username already Exist');
             }
             $universityID = $data['universityID'];
             $idExists = User::where('universityID', '=', $universityID)->first();
@@ -43,19 +43,25 @@ class UserRepository implements UserRepositoryInterface
             $user->username = $data['username'];
             $user->password = Hash::make($data['password']);
             $user->save();
+            try {
 
-            if ($data['forStudent'] === true) {
-                $student = new Student();
-                $student->userID = $user->id;
-                $student->isActivated = false;
-                $student->save();
+
+                if ($data['forStudent'] === true) {
+                    $student = new Student();
+                    $student->userID = $user->id;
+                    $student->isActivated = false;
+                    $student->save();
+                }
+            } catch (Exception $e) {
             }
             return response([
                 'message' => 'Successfully created user account.',
                 'user' => $user
             ], 200);
         } catch (Exception $e) {
-            return response($e->getMessage(), 400);
+            return response([
+                'message' => $e->getMessage()
+            ], 400);
         }
     }
 

@@ -23,7 +23,7 @@ class CourseRepository implements CourseRepositoryInterface
             $courseIDExists = Course::where('courseCode', '=',  $data['courseCode'])->first();
 
             if (!is_null($courseIDExists)) {
-                echo 'course id exists';
+
                 throw new Exception('The ID already exists. Cannot add to course');
             }
 

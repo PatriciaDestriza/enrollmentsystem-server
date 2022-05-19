@@ -16,7 +16,7 @@ class ScheduleRepository implements ScheduleRepositoryInterface
 
 
             if (!is_null($sameSchedule)) {
-                throw new Exception('Schedule already created');
+                throw new Exception('Schedule already created. Cannot create a new schedule with same day, start and end times.');
             }
 
             $sched = new Schedule();
@@ -25,7 +25,7 @@ class ScheduleRepository implements ScheduleRepositoryInterface
             $sched->endTime = $data['endTime'];
             $sched->save();
             return response([
-                'Schedule saved successfuly'
+                'message' => 'Schedule saved successfuly'
             ], 200);
         } catch (Exception $err) {
             return response([

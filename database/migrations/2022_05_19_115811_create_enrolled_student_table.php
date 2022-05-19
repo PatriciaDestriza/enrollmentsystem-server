@@ -20,7 +20,7 @@ class CreateEnrolledStudentTable extends Migration
             $table->foreignId('termID');
             $table->foreign('termID')->references('id')->on('academic_terms');
             $table->foreignId('yearLevelID');
-            $table->foreign('yearLevelID')->references('id')->on('year_level');
+            $table->foreign('yearLevelID')->references('id')->on('year_levels');
             $table->foreignId('blockID');
             $table->foreign('blockID')->references('id')->on('blocks');
             $table->boolean('isRegular');

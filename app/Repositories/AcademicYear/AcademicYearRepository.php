@@ -10,8 +10,14 @@ class AcademicYearRepository implements AcademicYearRepositoryInterface
     public function createAcademicYear($data)
     {
         $acadYear = new AcademicYear;
-
         try {
+            $yearExists = AcademicYear::where('startYear', '=', $data['startYear'])->first();
+
+            if (!is_null($yearExists)) {
+                throw new Exception("Academic Year already exists.");
+            }
+
+
             $acadYear->startYear = $data['startYear'];
             $acadYear->endYear = $data['endYear'];
             $acadYear->save();

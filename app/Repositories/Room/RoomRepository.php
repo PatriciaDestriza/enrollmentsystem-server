@@ -9,9 +9,16 @@ class RoomRepository implements RoomRepositoryInterface
 {
     public function createRoom($data)
     {
-        $room = new Room();
 
         try {
+
+
+            $room = new Room();
+            $roomExists = Room::where('roomCode', '=', $data['roomCode'])->first();
+
+            if (!is_null($roomExists)) {
+                throw new Exception("Room code already exists. Cannot add a new room with the same code");
+            }
             $room->roomName = $data['roomName'];
             $room->roomCode = $data['roomCode'];
             $room->save();

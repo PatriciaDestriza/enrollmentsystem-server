@@ -16,10 +16,16 @@ class BlockRepository implements BlockRepositoryInterface
                 throw new Exception("The program you're adding does not exist");
             }
 
+            $blockExists = Block::where('blockCode', '=', $data['blockCode'])->first();
+            if (!is_null($blockExists)) {
+                throw new Exception('Block already exists.');
+            }
+
             $block = new Block();
             $block->blockName = $data['blockName'];
             $block->blockCode = $data['blockCode'];
             $block->programID = $data['programID'];
+            $block->yearID = $data['yearID'];
             $block->save();
             return response([
                 'message' => 'Block created successfully'

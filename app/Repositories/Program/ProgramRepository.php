@@ -13,6 +13,14 @@ class ProgramRepository implements ProgramRepositoryInterface
     {
         try {
             $program = new Program();
+
+            $programExists = Program::where('programCode', '=', $data['programCode'])->first();
+            if (!is_null($programExists)) {
+                throw new Exception('Program already exists. Cannot add new program with same ID.');
+            }
+
+
+
             $program->programName = $data['programName'];
             $program->departmentID = $data['departmentID'];
             $program->programCode = $data['programCode'];
@@ -34,7 +42,9 @@ class ProgramRepository implements ProgramRepositoryInterface
                 throw new Exception('Program does not exist. Cannot delete.');
             }
 
-            $prog = Program::find($id)->delete();
+            $prog = Program::find($id);
+            $prog->programCode = null;
+            $prog->delete();
             return response([
                 'message' => 'Program with id#' . $id . ' successfully deleted'
             ]);

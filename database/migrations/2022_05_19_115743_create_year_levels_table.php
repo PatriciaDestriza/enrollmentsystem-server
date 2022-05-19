@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateYearLevelTable extends Migration
+class CreateYearLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateYearLevelTable extends Migration
      */
     public function up()
     {
-        Schema::create('year_level', function (Blueprint $table) {
+        Schema::create('year_levels', function (Blueprint $table) {
             $table->id();
             $table->enum('yearName', ['First Year', 'Second Year', 'Third Year', 'Fourth Year', 'Fifth Year']);
             $table->softDeletes();
