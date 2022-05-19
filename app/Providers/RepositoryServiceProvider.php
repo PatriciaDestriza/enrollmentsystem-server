@@ -19,6 +19,7 @@ use App\Repositories\EnrolledStudents\EnrolledStudentRepository;
 use App\Repositories\EnrolledStudents\EnrolledStudentRepositoryInterface;
 use App\Repositories\Room\RoomRepository;
 use App\Repositories\Room\RoomRepositoryInterface;
+use App\Repositories\Schedule\ScheduleRepository;
 use App\Repositories\Schedule\ScheduleRepositoryInterface;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Student\StudentRepositoryInterface;
@@ -47,7 +48,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(BlockRepositoryInterface::class, BlockRepository::class);
         $this->app->bind(CourseRepositoryInterface::class, CourseRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
-        $this->app->bind(ScheduleRepositoryInterface::class, RoomRepository::class);
+        $this->app->bind(ScheduleRepositoryInterface::class, ScheduleRepository::class);
         $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
         $this->app->bind(EnrolledStudentRepositoryInterface::class, EnrolledStudentRepository::class);
     }
