@@ -57,11 +57,11 @@ class CourseRepository implements CourseRepositoryInterface
     public function getCourses()
     {
         try {
-            $courses = Course::all();
+            $courses = Course::with(['room', 'schedule'])->get();
             return response($courses, 200);
         } catch (Exception $error) {
             return response([
-                'message' => 'Something went wrong.'
+                'message' => $error->getMessage()
             ], 400);
         }
     }
