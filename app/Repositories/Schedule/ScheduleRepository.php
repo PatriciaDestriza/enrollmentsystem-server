@@ -14,7 +14,6 @@ class ScheduleRepository implements ScheduleRepositoryInterface
                 ->where('startTime', '=', $data['startTime'])
                 ->where('endTime', '=', $data['endTime'])->get();
 
-            echo $sameSchedule;
 
             if (!is_null($sameSchedule)) {
                 throw new Exception('Schedule already created');
@@ -31,7 +30,7 @@ class ScheduleRepository implements ScheduleRepositoryInterface
         } catch (Exception $err) {
             return response([
                 'message' => $err->getMessage()
-            ]);
+            ], 400);
         }
     }
     public function editSchedule($id)
