@@ -12,7 +12,7 @@ class ScheduleRepository implements ScheduleRepositoryInterface
         try {
             $sameSchedule =  Schedule::where('day', '=', $data['day'])
                 ->where('startTime', '=', $data['startTime'])
-                ->where('endTime', '=', $data['endTime'])->get();
+                ->where('endTime', '=', $data['endTime'])->first();
 
 
             if (!is_null($sameSchedule)) {
