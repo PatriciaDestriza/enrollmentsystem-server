@@ -19,6 +19,8 @@ class CreateBlocksTable extends Migration
             $table->string('blockCode')->unique();
             $table->foreignId('programID');
             $table->foreign('programID')->references('id')->on('programs');
+            $table->foreignId('yearID');
+            $table->foreign('yearID')->references('id')->on('academic_years');
             $table->softDeletes();
             $table->timestamps();
         });

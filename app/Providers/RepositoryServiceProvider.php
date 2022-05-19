@@ -9,6 +9,8 @@ use App\Repositories\AcademicYear\AcademicYearRepository;
 use App\Repositories\AcademicYear\AcademicYearRepositoryInterface;
 use App\Repositories\Block\BlockRepository;
 use App\Repositories\Block\BlockRepositoryInterface;
+use App\Repositories\BlocksCourses\BlocksCoursesRepository;
+use App\Repositories\BlocksCourses\BlocksCoursesRepositoryInterface;
 use App\Repositories\Course\CourseRepository;
 use App\Repositories\Course\CourseRepositoryInterface;
 use App\Repositories\Department\DepartmentRepository;
@@ -54,6 +56,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
         $this->app->bind(EnrolledStudentRepositoryInterface::class, EnrolledStudentRepository::class);
         $this->app->bind(YearLevelRepositoryInterface::class, YearLevelRepository::class);
+        $this->app->bind(BlocksCoursesRepositoryInterface::class, BlocksCoursesRepository::class);
     }
 
     /**

@@ -49,7 +49,6 @@ class UserRepository implements UserRepositoryInterface
                 $student->userID = $user->id;
                 $student->isActivated = false;
                 $student->save();
-                echo 'made student';
             }
             return response([
                 'message' => 'Successfully created user account.',
