@@ -28,6 +28,8 @@ use App\Repositories\Teacher\TeacherRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\YearLevel\YearLevelRepository;
+use App\Repositories\YearLevel\YearLevelRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -51,6 +53,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ScheduleRepositoryInterface::class, ScheduleRepository::class);
         $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
         $this->app->bind(EnrolledStudentRepositoryInterface::class, EnrolledStudentRepository::class);
+        $this->app->bind(YearLevelRepositoryInterface::class, YearLevelRepository::class);
     }
 
     /**

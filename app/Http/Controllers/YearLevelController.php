@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\YearLevel\YearLevelRepositoryInterface;
 use Illuminate\Http\Request;
 
 class YearLevelController extends Controller
 {
-
-    public function __construct(YearLevelRepos)
+    private $repository;
+    public function __construct(YearLevelRepositoryInterface $repository)
     {
-        
+        $this->repository = $repository;
     }
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class YearLevelController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getAllYearLevels();
     }
 
     /**
@@ -39,7 +40,8 @@ class YearLevelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->createYearLevel($data);
     }
 
     /**
@@ -84,6 +86,6 @@ class YearLevelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->repository->deleteYearLevel($id);
     }
 }
