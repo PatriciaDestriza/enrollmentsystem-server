@@ -9,4 +9,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Block extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'blockName',
+        'blockCode',
+        'programID'
+    ];
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'programID');
+    }
 }

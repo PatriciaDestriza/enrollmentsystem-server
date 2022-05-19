@@ -16,7 +16,7 @@ class CreateBlocksTable extends Migration
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
             $table->string('blockName');
-            $table->string('blockCode');
+            $table->string('blockCode')->unique();
             $table->foreignId('programID');
             $table->foreign('programID')->references('id')->on('programs');
             $table->softDeletes();
