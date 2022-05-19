@@ -33,4 +33,13 @@ class AcademicYearRepository implements AcademicYearRepositoryInterface
             return response()->json(['message' => $e->getMessage()], 400);
         }
     }
+    public function getAcademicYears()
+    {
+        try {
+            $years = AcademicYear::all();
+            return response($years, 200);
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 400);
+        }
+    }
 }

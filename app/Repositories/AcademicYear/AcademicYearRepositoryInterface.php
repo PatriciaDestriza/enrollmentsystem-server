@@ -6,5 +6,6 @@ interface AcademicYearRepositoryInterface
 {
     public function createAcademicYear($data);
     public function updateAcademicYear($data);
+    public function getAcademicYears();
     public function deleteAcademicYear($id);
 }

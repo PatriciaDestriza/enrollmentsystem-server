@@ -18,6 +18,7 @@ class CreateSchedulesTable extends Migration
             $table->string('day');
             $table->time('startTime');
             $table->time('endTime');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

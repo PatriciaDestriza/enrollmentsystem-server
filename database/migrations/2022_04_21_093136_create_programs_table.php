@@ -18,6 +18,7 @@ class CreateProgramsTable extends Migration
             $table->foreignId('departmentID');
             $table->foreign('departmentID')->references('id')->on('departments');
             $table->string('programCode')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

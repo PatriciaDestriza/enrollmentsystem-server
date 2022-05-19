@@ -17,6 +17,7 @@ class CreateAcademicYearsTable extends Migration
             $table->id();
             $table->year('startYear')->unique();
             $table->year('endYear')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

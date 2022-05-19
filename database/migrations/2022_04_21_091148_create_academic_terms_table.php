@@ -18,6 +18,7 @@ class CreateAcademicTermsTable extends Migration
             $table->string('semName');
             $table->foreignId('academicYearID');
             $table->foreign('academicYearID')->references('id')->on('academic_years');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

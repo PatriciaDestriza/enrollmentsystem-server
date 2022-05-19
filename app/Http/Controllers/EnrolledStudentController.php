@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\EnrolledStudents\EnrolledStudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class EnrolledStudentController extends Controller
 {
     private $repository;
-    public function __construct(EnrolledStudetRepositoryInterface $repository)
+    public function __construct(EnrolledStudentRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -85,6 +86,6 @@ class EnrolledStudentController extends Controller
      */
     public function destroy($id)
     {
-        $this->repository->deleteEnrolledStudent($id);
+        $this->repository->deleteEnrolledStudents($id);
     }
 }
