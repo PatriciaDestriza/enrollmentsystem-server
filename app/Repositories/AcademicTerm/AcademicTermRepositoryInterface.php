@@ -7,5 +7,6 @@ interface AcademicTermRepositoryInterface
     public function createAcademicTerm($data);
     public function getAllAcademicTerms();
     public function updateAcademicTerm($data);
+    public function getAllAcademicTerms();
     public function deleteAcademicTerm($id);
 }

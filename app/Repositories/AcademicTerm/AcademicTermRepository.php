@@ -40,4 +40,15 @@ class AcademicTermRepository implements AcademicTermRepositoryInterface
             return response()->json(['message' => $e->getMessage()], 400);
         }
     }
+    public function getAllAcademicTerms()
+    {
+        try {
+            $terms = AcademicTerm::all();
+            return response($terms, 200);
+        } catch (Exception $error) {
+            return response([
+                'message' => $error->getMessage()
+            ], 400);
+        }
+    }
 }
