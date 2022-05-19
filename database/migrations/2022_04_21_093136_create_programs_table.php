@@ -15,6 +15,7 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
+            $table->string('programName');
             $table->foreignId('departmentID');
             $table->foreign('departmentID')->references('id')->on('departments');
             $table->string('programCode')->unique();

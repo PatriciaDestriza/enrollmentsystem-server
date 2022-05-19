@@ -17,6 +17,7 @@ class CreateDepartmentsTable extends Migration
             $table->id();
             $table->string('collegeName');
             $table->string('collegeCode')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

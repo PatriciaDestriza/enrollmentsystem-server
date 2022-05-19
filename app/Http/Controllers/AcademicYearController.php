@@ -21,7 +21,8 @@ class AcademicYearController extends Controller
      */
     public function index()
     {
-        return $this->repository->getAcademicYears();
+  
+        return $this->repository->getAllAcademicYears();
     }
 
     /**
