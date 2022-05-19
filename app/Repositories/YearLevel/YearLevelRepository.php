@@ -49,7 +49,7 @@ class YearLevelRepository implements YearLevelRepositoryInterface
         } catch (Exception $error) {
             return response([
                 'message' => $error->getMessage()
-            ]);
+            ], 400);
         }
     }
 }

@@ -7,6 +7,7 @@ interface StudentRepositoryInterface
 
     public function createStudent($data);
     public function editStudent($id);
-    public function getStudent();
+    public function getStudent($id);
+    public function getAllStudents();
     public function deleteStudent($id);
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\User;
 
+use App\Models\Student;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,23 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = new User();
         try {
+            $username = $data['username'];
+            $usernamExists = User::where('username', '=', $username)->first();
+            if (!is_null($usernamExists)) {
+                throw new Exception('Username already Exists');
+            }
+            $universityID = $data['universityID'];
+            $idExists = User::where('universityID', '=', $universityID)->first();
+            if (!is_null($idExists)) {
+                throw new Exception('ID already Exists');
+            }
+
+            $email = $data['email'];
+            $emailExists = User::where('email', '=', $email)->first();
+            if (!is_null($emailExists)) {
+                throw new Exception('Email already exists');
+            }
+
             $user->accountType = $data['accountType'];
             $user->universityID = $data['universityID'];
             $user->firstName = $data['firstName'];
@@ -25,6 +43,14 @@ class UserRepository implements UserRepositoryInterface
             $user->username = $data['username'];
             $user->password = Hash::make($data['password']);
             $user->save();
+
+            if ($data['forStudent'] === true) {
+                $student = new Student();
+                $student->userID = $user->id;
+                $student->isActivated = false;
+                $student->save();
+                echo 'made student';
+            }
             return response([
                 'message' => 'Successfully created user account.',
                 'user' => $user

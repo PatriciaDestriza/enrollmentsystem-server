@@ -10,7 +10,7 @@ class StudentController extends Controller
     private $repository;
     public function __construct(StudentRepositoryInterface $repository)
     {
-        $this->$repository = $repository;
+        $this->repository = $repository;
     }
     /**
      * Display a listing of the resource.
