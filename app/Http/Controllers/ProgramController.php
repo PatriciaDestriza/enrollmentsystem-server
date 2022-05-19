@@ -86,6 +86,6 @@ class ProgramController extends Controller
      */
     public function destroy($id)
     {
-       return $this->$repository->deleteProgram($id);
+        return $this->repository->deleteProgram($id);
     }
 }

@@ -28,6 +28,21 @@ class ProgramRepository implements ProgramRepositoryInterface
     }
     public function deleteProgram($id)
     {
+        try {
+            $prog_exists = Program::find($id);
+            if (is_null($prog_exists)) {
+                throw new Exception('Program does not exist. Cannot delete.');
+            }
+
+            $prog = Program::find($id)->delete();
+            return response([
+                'message' => 'Program with id#' . $id . ' successfully deleted'
+            ]);
+        } catch (Exception $e) {
+            return response([
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
     public function getAllPrograms()
     {
