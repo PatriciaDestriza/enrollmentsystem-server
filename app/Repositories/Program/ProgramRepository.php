@@ -34,20 +34,6 @@ class ProgramRepository implements ProgramRepositoryInterface
         return Program::with('department')->get();
     }
     public function getSpecificProgram($id)
-namespace App\Repositories\Program;
-
-class ProgramRepository implements ProgramRepositoryInterface
-{
-    public function createProgram($data)
-    {
-    }
-    public function editProgram($id)
-    {
-    }
-    public function getPrograms()
-    {
-    }
-    public function deleteProgram($id)
     {
     }
 }

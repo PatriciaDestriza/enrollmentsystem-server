@@ -31,6 +31,8 @@ class AcademicYearRepository implements AcademicYearRepositoryInterface
             return AcademicYear::all();
         } catch (Exception $e) {
             return response(['message' => $e->getMessage()], 401);
+        }
+    }
     public function deleteAcademicYear($id)
     {
         try {
@@ -38,15 +40,6 @@ class AcademicYearRepository implements AcademicYearRepositoryInterface
             AcademicYear::find($id)->delete();
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 400);
-        }
-    }
-    public function getAcademicYears()
-    {
-        try {
-            $years = AcademicYear::all();
-            return response($years, 200);
-        } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 400);
         }
     }
 }
