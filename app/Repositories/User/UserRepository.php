@@ -91,4 +91,37 @@ class UserRepository implements UserRepositoryInterface
             return response(['message' => $e->getMessage()], 400);
         }
     }
+
+    public function getUsers()
+    {
+        return User::all();
+    }
+
+    public function updateUser($id, $data)
+    {
+        try {
+            $user = User::find($id);
+            if (is_null($user)) {
+                throw new Exception('User does not exist');
+            }
+            $user->universityID = $data['universityID'] ?? $user->universityID;
+            $user->firstName = $data['firstName'] ?? $user->firstName;
+            $user->middleName = $data['middleName'] ?? $user->middleName;
+            $user->lastName = $data['lastName'] ?? $user->lastName;
+            $user->birthDate = $data['birthDate'] ?? $user->birthDate;
+            $user->address = $data['address'] ?? $user->address;
+            $user->phoneNumber = $data['phoneNumber'] ?? $user->phoneNumber;
+            $user->email = $data['email'] ?? $user->email;
+            $user->username = $data['username'] ?? $user->username;
+            $user->password = Hash::make($data['password']) ?? $user->password;
+            $user->save();
+            return response([
+                'message' => 'User has been updated'
+            ]);
+        } catch (Exception $e) {
+            return response([
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

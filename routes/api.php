@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::resource('/enrolled-students', EnrolledStudentController::class);
         Route::resource('/blocks', BlockController::class);
         Route::resource('/blocks-courses', BlockCoursesController::class);
+        Route::resource('/users', UserController::class);
     });
 
 

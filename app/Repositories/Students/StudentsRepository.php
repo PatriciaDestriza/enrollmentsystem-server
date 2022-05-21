@@ -2,12 +2,14 @@
 
 namespace App\Repositories\Student;
 
+use App\Models\Student;
 use App\Repositories\User\UserRepositoryInterface;
 use Carbon\Carbon;
 use Exception;
 
 class StudentRepository implements StudentRepositoryInterface
 {
+
     private $repository;
     public function __construct(UserRepositoryInterface $repository)
     {
@@ -65,10 +67,10 @@ class StudentRepository implements StudentRepositoryInterface
             ], 400);
         }
     }
-    public function editStudent($id)
+    public function editStudent($id, $data)
     {
         try {
-            //code...
+            return $this->repository->updateUser($id, $data);
         } catch (Exception $error) {
             return response([
                 'message' => $error->getMessage()
@@ -89,7 +91,7 @@ class StudentRepository implements StudentRepositoryInterface
     public function getAllStudents()
     {
         try {
-            //code...
+            return Student::with('user')->get();
         } catch (Exception $error) {
             return response([
                 'message' => $error->getMessage()
