@@ -19,7 +19,7 @@ class AcademicTermController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getAllAcademicTerms();
     }
 
     /**
@@ -86,6 +86,6 @@ class AcademicTermController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->repository->deleteAcademicTerm($id);
     }
 }

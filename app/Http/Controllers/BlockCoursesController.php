@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Schedule\ScheduleRepositoryInterface;
-use App\Repositories\Schedule\ScheduleRepository;
+use App\Repositories\BlocksCourses\BlocksCoursesRepositoryInterface;
 use Illuminate\Http\Request;
 
-class ScheduleController extends Controller
+class BlockCoursesController extends Controller
 {
     private $repository;
-    public function __construct(ScheduleRepositoryInterface $repository)
+    public function __construct(BlocksCoursesRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +19,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return $this->repository->getSchedules();
+        return $this->repository->getAllBlocksCourses();
     }
 
     /**
@@ -43,7 +41,7 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        return $this->repository->createSchedule($data);
+        return $this->repository->createBlocksCourses($data);
     }
 
     /**
@@ -88,6 +86,6 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        return $this->repository->deleteSchedule($id);
+        return $this->repository->deleteBlocksCourses($id);
     }
 }

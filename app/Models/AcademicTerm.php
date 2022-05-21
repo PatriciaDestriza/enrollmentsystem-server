@@ -14,4 +14,9 @@ class AcademicTerm extends Model
         'semName',
         'academicYearID'
     ];
+
+    public function academicYear()
+    {
+        return $this->belongsTo(AcademicYear::class, 'academicYearID');
+    }
 }

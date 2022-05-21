@@ -30,6 +30,11 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function getAllTeachers()
     {
+        try {
+            return Teacher::with('department')->get();
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 401);
+        }
     }
 
     public function getSpecificTeacher($id)

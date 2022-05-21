@@ -14,6 +14,12 @@ class DepartmentRepository implements DepartmentRepositoryInterface
         try {
             $department = new Department();
 
+            $deptExists = Department::where('collegeCode', '=', $data['collegeCode'])->first();
+
+            if (!is_null($deptExists)) {
+                throw new Exception('Department already exists. Cannot create a new department with the same code.');
+            }
+
             $department->collegeName = $data['collegeName'];
             $department->collegeCode = $data['collegeCode'];
             $department->save();
@@ -26,8 +32,14 @@ class DepartmentRepository implements DepartmentRepositoryInterface
     public function updateDepartment($data)
     {
     }
-    public function getAllDepartments($data)
+    public function getAllDepartments()
     {
+        try {
+
+            return Department::all();
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 401);
+        }
     }
 
     public function deleteDepartment($data)

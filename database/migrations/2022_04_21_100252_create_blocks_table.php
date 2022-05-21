@@ -16,9 +16,12 @@ class CreateBlocksTable extends Migration
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
             $table->string('blockName');
-            $table->string('blockCode');
+            $table->string('blockCode')->unique();
             $table->foreignId('programID');
             $table->foreign('programID')->references('id')->on('programs');
+            $table->foreignId('yearID');
+            $table->foreign('yearID')->references('id')->on('academic_terms');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

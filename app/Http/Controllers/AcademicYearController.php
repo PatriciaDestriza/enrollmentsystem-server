@@ -21,7 +21,8 @@ class AcademicYearController extends Controller
      */
     public function index()
     {
-        //
+  
+        return $this->repository->getAllAcademicYears();
     }
 
     /**
@@ -88,6 +89,6 @@ class AcademicYearController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->repository->deleteAcademicYear($id);
     }
 }

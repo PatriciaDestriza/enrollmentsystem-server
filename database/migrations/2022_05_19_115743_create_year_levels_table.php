@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentsTable extends Migration
+class CreateYearLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('year_levels', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('userID');
-            $table->foreign('userID')->references('id')->on('users');
-            $table->boolean('isActivated');
+            $table->enum('yearName', ['First Year', 'Second Year', 'Third Year', 'Fourth Year', 'Fifth Year']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('year_level');
     }
 }

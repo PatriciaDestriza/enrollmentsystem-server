@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Room\RoomRepositoryInterface;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
+
 {
+    private $repository;
+    public function __construct(RoomRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getRooms();
     }
 
     /**
@@ -34,7 +41,8 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->createRoom($data);
     }
 
     /**
@@ -79,6 +87,6 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->deleteRoom($id);
     }
 }

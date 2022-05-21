@@ -5,8 +5,9 @@ namespace App\Repositories\Program;
 
 interface ProgramRepositoryInterface
 {
-    public function createCourse($data);
-    public function editCourse($id);
-    public function getCourses();
-    public function deleteCourse($id);
+    public function createProgram($data);
+    public function updateProgram($data);
+    public function deleteProgram($id);
+    public function getAllPrograms();
+    public function getSpecificProgram($id);
 }
