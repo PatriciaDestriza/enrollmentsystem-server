@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'phoneNumber' => 'e',
             'email' => 'testemail2121',
             'username' => 'testusername1212',
-            'password' => 'testpassword',
+            'password' => Hash::make('testpass'),
             'accountType' => 'admin',
         ]);
 
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             'phoneNumber' => 'e',
             'email' => 'testemail12',
             'username' => 'testusername11231',
-            'password' => 'testpassword',
+            'password' => Hash::make('testpassword'),
             'accountType' => 'student',
         ]);
 
@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
             'yearName' => 'First Year',
         ]);
 
-        DB::table('enrolled_student')->insert([
+        DB::table('enrolled_students')->insert([
             'studentID' => 1,
             'yearLevelID' => 1,
             'blockID' => 1,
