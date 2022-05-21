@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::resource('/rooms', RoomController::class);
         Route::resource('/courses', CourseController::class);
         Route::resource('/student', StudentController::class);
-        Route::resource('/enrolled-students', EnrolledStudentController::class);
+        Route::resource('/enrollment', EnrolledStudentController::class);
         Route::resource('/blocks', BlockController::class);
         Route::resource('/blocks-courses', BlockCoursesController::class);
         Route::resource('/users', UserController::class);

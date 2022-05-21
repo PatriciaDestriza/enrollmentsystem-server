@@ -20,7 +20,7 @@ class CreateBlocksTable extends Migration
             $table->foreignId('programID');
             $table->foreign('programID')->references('id')->on('programs');
             $table->foreignId('yearID');
-            $table->foreign('yearID')->references('id')->on('academic_years');
+            $table->foreign('yearID')->references('id')->on('academic_terms');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -38,7 +38,7 @@ class BlockRepository implements BlockRepositoryInterface
     }
     public function getBlocks()
     {
-        return Block::with('program')->get();
+        return Block::with('program', 'courses', 'students')->get();
     }
     public function editBlock($id)
     {

@@ -20,4 +20,14 @@ class Block extends Model
     {
         return $this->belongsTo(Program::class, 'programID');
     }
+
+    public function students()
+    {
+        return $this->hasMany(EnrolledStudent::class, 'blockID');
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(BlockCourses::class, 'blockID');
+    }
 }
