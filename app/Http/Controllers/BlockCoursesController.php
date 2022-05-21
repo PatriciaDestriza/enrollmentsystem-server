@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\BlocksCourses\BlocksCoursesRepositoryInterface;
 use Illuminate\Http\Request;
 
 class BlockCoursesController extends Controller
 {
+    private $repository;
+    public function __construct(BlocksCoursesRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,7 @@ class BlockCoursesController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getAllBlocksCourses();
     }
 
     /**
@@ -34,7 +40,8 @@ class BlockCoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->createBlocksCourses($data);
     }
 
     /**
@@ -79,6 +86,6 @@ class BlockCoursesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->repository->deleteBlocksCourses($id);
     }
 }

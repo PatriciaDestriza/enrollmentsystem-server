@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcademicTermController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\BlockController;
+use App\Http\Controllers\BlockCoursesController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrolledStudentController;
@@ -51,6 +52,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::resource('/student', StudentController::class);
         Route::resource('/enrolled-students', EnrolledStudentController::class);
         Route::resource('/blocks', BlockController::class);
+        Route::resource('/blocks-courses', BlockCoursesController::class);
     });
 
 
