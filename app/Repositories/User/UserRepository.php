@@ -80,7 +80,6 @@ class UserRepository implements UserRepositoryInterface
                 return response(['message' => 'Login credentials mismatch.'], 401);
             }
             $accountType = $data['accountType'];
-            echo 'account type is' . $accountType;
             $accessToken = $this->createToken('accessToken', $accountType)->accessToken;
 
             return response([
