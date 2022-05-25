@@ -94,4 +94,9 @@ class UserController extends Controller
     {
         //
     }
+
+    public function logout()
+    {
+        return $this->repository->logout();
+    }
 }

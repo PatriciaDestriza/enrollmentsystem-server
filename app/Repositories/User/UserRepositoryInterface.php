@@ -9,4 +9,5 @@ interface UserRepositoryInterface
     public function updateUser($id, $data);
     public function getUsers();
     public function login($data);
+    public function logout();
 }

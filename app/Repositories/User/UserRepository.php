@@ -123,4 +123,11 @@ class UserRepository implements UserRepositoryInterface
             ], 400);
         }
     }
+    public function logout()
+    {
+        Auth::logout();
+        return response([
+            'message' => 'Logged out'
+        ]);
+    }
 }

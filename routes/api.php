@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::resource('/blocks', BlockController::class);
         Route::resource('/blocks-courses', BlockCoursesController::class);
         Route::resource('/users', UserController::class);
+        Route::get('logout', 'UserController@logout');
     });
 
 
