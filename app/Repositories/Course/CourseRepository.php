@@ -57,7 +57,7 @@ class CourseRepository implements CourseRepositoryInterface
     public function getCourses()
     {
         try {
-            $courses = Course::with(['room', 'schedule'])->get();
+            $courses = Course::with(['room', 'schedule', 'teacher'])->get();
             return response($courses, 200);
         } catch (Exception $error) {
             return response([

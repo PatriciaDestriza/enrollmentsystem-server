@@ -27,4 +27,8 @@ class Course extends Model
     {
         return $this->belongsTo(Schedule::class, 'scheduleID');
     }
+
+    public function teacher(){
+        return $this->belongsTo(Teacher::class, 'teacherID');
+    }
 }
