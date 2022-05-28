@@ -16,13 +16,14 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('courseName');
-            $table->string('courseCode')->unique();
+            $table->string('courseCode')->unique()->nullable();
             $table->foreignId('teacherID');
             $table->foreign('teacherID')->references('id')->on('teachers');
             $table->foreignId('roomID');
             $table->foreign('roomID')->references('id')->on('rooms');
             $table->foreignId('scheduleID');
             $table->foreign('scheduleID')->references('id')->on('schedules');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

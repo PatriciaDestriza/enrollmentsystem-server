@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Students\StudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    private $repository;
+    public function __construct(StudentRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getAllStudents();
     }
 
     /**
@@ -34,7 +40,8 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->createStudent($data);
     }
 
     /**
@@ -79,6 +86,6 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->repository->deleteStudent($id);
     }
 }
