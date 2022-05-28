@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Student\StudentRepositoryInterface;
+use App\Repositories\Students\StudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
