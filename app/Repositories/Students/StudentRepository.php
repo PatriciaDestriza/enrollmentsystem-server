@@ -70,8 +70,12 @@ class StudentRepository implements StudentRepositoryInterface
     public function editStudent($id, $data)
     {
         $user = Student::find($id);
+        if (is_null($user)){
+            throw new Exception('User does not exist. Cannot edit.');
+        }
+
+        $user->isActivated = $data['isActivated'] ?? $user->isActivated;
         $userID = $user->userID;
-        echo $userID;
         return $this->repository->updateUser($userID, $data);
         try {
             return $this->repository->updateUser($id, $data);
