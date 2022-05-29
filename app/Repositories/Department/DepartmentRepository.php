@@ -40,6 +40,9 @@ class DepartmentRepository implements DepartmentRepositoryInterface
             $dept->collegeName = $data['collegeName'] ?? $dept->collegeName;
             $dept->collegeCode = $data['collegeCode'] ?? $dept->collegeCode;
             $dept->save();
+            return response([
+                'message' => 'Department has been updated'
+            ]);
         } catch (Exception $e) {
             return response(['message' => $e->getMessage()], 400);
         }

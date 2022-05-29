@@ -82,7 +82,8 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        return $this->repository->updateDepartment($id, $data);
     }
 
     /**
