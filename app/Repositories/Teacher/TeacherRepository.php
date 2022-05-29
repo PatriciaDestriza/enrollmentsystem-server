@@ -3,6 +3,7 @@
 
 namespace App\Repositories\Teacher;
 
+use App\Models\Department;
 use App\Models\Teacher;
 use Exception;
 
@@ -24,9 +25,30 @@ class TeacherRepository implements TeacherRepositoryInterface
         }
     }
 
-    public function updateTeacher($data)
+    public function updateTeacher($id, $data)
     {
-        //TODO: CREATE
+        
+        try {
+            $teacher = Teacher::find($id);
+
+            if (is_null($teacher)){
+                throw new Exception('Teacher not found. Cannot update');
+            }
+
+            $teacher->firstName = $data['firstName'] ?? $teacher->firstName;
+            $teacher->middleName = $data['middleName'] ?? $teacher->middleName;
+            $teacher->lastName = $data['lastName'] ?? $teacher->lastName;
+            $dept = Department::find($data['departmentID']);
+
+            if (is_null($dept)){
+                throw new Exception('Department not found. Cannot add');
+            }
+            $teacher->departmentID = $data['departmentID'] ?? $teacher->departmentID;
+            $teacher->save();
+            return response(['message' => 'Teacher created successfully.'], 200);
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 400);
+        }
     }
 
     public function getAllTeachers()
@@ -44,6 +66,5 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function deleteTeacher($id)
     {
-        //TODO: CREATE
     }
 }
