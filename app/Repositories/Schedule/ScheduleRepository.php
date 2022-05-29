@@ -68,5 +68,22 @@ class ScheduleRepository implements ScheduleRepositoryInterface
     }
     public function deleteSchedule($id)
     {
+        try {
+            $sched = Schedule::find($id);
+            if (is_null($sched)) {
+                throw new Exception('Schedule does not exist. Cannot delete');
+            }
+
+        $sched->courses
+            $sched->delete();
+
+            return response([
+                'message' => ' Schedule deleted'
+            ]);
+        } catch (Exception $error) {
+            return response([
+                'message' => $error->getMessage()
+            ], 400);
+        }
     }
 }

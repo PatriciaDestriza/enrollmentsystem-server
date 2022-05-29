@@ -69,7 +69,10 @@ class StudentRepository implements StudentRepositoryInterface
     }
     public function editStudent($id, $data)
     {
-        //TODO: CREATE
+        $user = Student::find($id);
+        $userID = $user->userID;
+        echo $userID;
+        return $this->repository->updateUser($userID, $data);
         try {
             return $this->repository->updateUser($id, $data);
         } catch (Exception $error) {
