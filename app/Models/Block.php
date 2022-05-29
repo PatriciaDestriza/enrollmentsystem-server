@@ -30,4 +30,8 @@ class Block extends Model
     {
         return $this->hasMany(BlockCourses::class, 'blockID');
     }
+
+    public function academic_term(){
+        return $this->belongsTo(AcademicTerm::class, "yearID");
+    }
 }
