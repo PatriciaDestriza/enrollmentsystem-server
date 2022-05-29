@@ -74,7 +74,6 @@ class ScheduleRepository implements ScheduleRepositoryInterface
                 throw new Exception('Schedule does not exist. Cannot delete');
             }
 
-        $sched->courses
             $sched->delete();
 
             return response([
