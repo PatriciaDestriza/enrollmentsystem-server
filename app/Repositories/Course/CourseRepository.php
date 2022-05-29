@@ -65,8 +65,44 @@ class CourseRepository implements CourseRepositoryInterface
             ], 400);
         }
     }
-    public function editCourse($id)
+    public function editCourse($id, $data)
     {
+        try {
+            $courseExists = Course::find($id);
+            if (is_null($courseExists)){
+                throw new Exception('Course does not exist. Cannot edit');
+            }
+            $teacherExists =Teacher::find($data['teacherID']);
+            $roomExists = Room::find($data['roomID']);
+            $scheduleExists = Schedule::find($data['scheduleID']);
+
+            if (is_null($teacherExists)) {
+                throw new Exception('The teacher does not exist. Cannot add to course');
+            }
+
+            if (is_null($roomExists)) {
+                throw new Exception('The room does not exist. Cannot add to course');
+            }
+
+            if (is_null($scheduleExists)) {
+                throw new Exception('The schdule does not exist. Cannot add to course');
+            }
+
+            $courseExists->courseName = $data['courseName'] ?? $courseExists->courseName;
+            $courseExists->courseCode = $data['courseCode'] ?? $courseExists->courseCode;
+            $courseExists->teacherID = $data['teacherID'] ?? $courseExists->teacherID;
+            $courseExists->roomID = $data['roomID'] ?? $courseExists->roomID;
+            $courseExists->scheduleID = $data['scheduleID'] ?? $courseExists->scheduleID;
+            $courseExists->save();
+            return response([
+                'message' => 'Course successfully edited'
+            ], 200);
+
+        } catch (Exception $error) {
+            return response([
+                'message' => $error->getMessage()
+            ], 400);
+        }
     }
     public function deleteCourse($id)
     {

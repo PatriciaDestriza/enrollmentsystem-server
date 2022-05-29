@@ -7,6 +7,6 @@ interface CourseRepositoryInterface
 {
     public function createCourse($data);
     public function getCourses();
-    public function editCourse($id);
+    public function editCourse($id, $data);
     public function deleteCourse($id);
 }
