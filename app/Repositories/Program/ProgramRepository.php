@@ -3,6 +3,7 @@
 
 namespace App\Repositories\Program;
 
+use App\Models\Department;
 use App\Models\Program;
 use Exception;
 
@@ -27,13 +28,31 @@ class ProgramRepository implements ProgramRepositoryInterface
             $program->save();
             return response(['message' => 'Program Successfuly Created'], 201);
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 401);
+            return response(['message' => $e->getMessage()], 400);
         }
     }
 
-    public function updateProgram($data)
+    public function updateProgram($id, $data)
     {
-        //TODO: CREATE
+        try {
+            $program = Program::find($id);
+            if (is_null($program)) {
+                throw new Exception('Program does not exist. Cannot edit');
+            }
+
+            $deptExists = Department::find($data['departmentID']);
+            if (is_null($deptExists)) {
+                throw new Exception('Department does not exist. Cannot add');
+            }
+
+            $program->programName = $data['programName'];
+            $program->departmentID = $data['departmentID'];
+            $program->programCode = $data['programCode'];
+            $program->save();
+            return response(['message' => 'Program Successfuly Updated'], 201);
+        } catch (Exception $error) {
+            return response(['message' => $error->getMessage()], 400);
+        }
     }
     public function deleteProgram($id)
     {

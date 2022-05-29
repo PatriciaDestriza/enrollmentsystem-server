@@ -36,7 +36,7 @@ class AcademicYearRepository implements AcademicYearRepositoryInterface
         try {
             return AcademicYear::all();
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 401);
+            return response(['message' => $e->getMessage()], 400);
         }
     }
     public function deleteAcademicYear($id)

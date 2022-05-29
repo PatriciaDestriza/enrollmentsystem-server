@@ -39,7 +39,7 @@ class AcademicTermRepository implements AcademicTermRepositoryInterface
         try {
             return AcademicTerm::with('academicYear')->get();
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 401);
+            return response(['message' => $e->getMessage()], 400);
         }
     }
     public function deleteAcademicTerm($id)

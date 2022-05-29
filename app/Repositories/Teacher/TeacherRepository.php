@@ -34,7 +34,7 @@ class TeacherRepository implements TeacherRepositoryInterface
         try {
             return Teacher::with('department')->get();
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 401);
+            return response(['message' => $e->getMessage()], 400);
         }
     }
 
