@@ -57,7 +57,20 @@ class DepartmentRepository implements DepartmentRepositoryInterface
         }
     }
 
-    public function deleteDepartment($data)
+    public function deleteDepartment($id)
     {
+        try {
+            $dept = Department::find($id);
+            if (is_null($dept)) {
+                throw new Exception('Department does not exist. Cannot delete');
+            }
+
+            $dept->delete();
+            return response([
+                'message' => ' Department has been deleted'
+            ]);
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 400);
+        }
     }
 }
