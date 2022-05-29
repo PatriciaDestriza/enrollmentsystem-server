@@ -86,6 +86,6 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->repository->deleteTeacher($id);
     }
 }

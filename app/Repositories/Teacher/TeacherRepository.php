@@ -27,11 +27,11 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function updateTeacher($id, $data)
     {
-        
+
         try {
             $teacher = Teacher::find($id);
 
-            if (is_null($teacher)){
+            if (is_null($teacher)) {
                 throw new Exception('Teacher not found. Cannot update');
             }
 
@@ -40,7 +40,7 @@ class TeacherRepository implements TeacherRepositoryInterface
             $teacher->lastName = $data['lastName'] ?? $teacher->lastName;
             $dept = Department::find($data['departmentID']);
 
-            if (is_null($dept)){
+            if (is_null($dept)) {
                 throw new Exception('Department not found. Cannot add');
             }
             $teacher->departmentID = $data['departmentID'] ?? $teacher->departmentID;
@@ -54,7 +54,7 @@ class TeacherRepository implements TeacherRepositoryInterface
     public function getAllTeachers()
     {
         try {
-            return Teacher::with('department')->get();
+            return Teacher::with('department', 'courses_taught')->get();
         } catch (Exception $e) {
             return response(['message' => $e->getMessage()], 400);
         }
@@ -66,5 +66,8 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function deleteTeacher($id)
     {
+        $teacher = Teacher::find($id);
+        $teacher->delete();
+        echo 'done';
     }
 }
