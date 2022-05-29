@@ -48,7 +48,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
     {
         try {
 
-            return Department::with('programs', 'teachers');
+            return Department::with('programs', 'teachers')->get();
         } catch (Exception $e) {
             return response(['message' => $e->getMessage()], 400);
         }
