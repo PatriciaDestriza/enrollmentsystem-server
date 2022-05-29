@@ -33,9 +33,27 @@ class ScheduleRepository implements ScheduleRepositoryInterface
             ], 400);
         }
     }
-    public function editSchedule($id)
+    public function editSchedule($id, $data)
     {
-        //TODO: CREATE
+        try {
+            $schedule = Schedule::find($id);
+            if (is_null($schedule)) {
+                throw new Exception('Schedule does not exist. Cannot edit');
+            }
+
+
+            $schedule->day = $data['updateDay'];
+            $schedule->startTime = $data['startTime'];
+            $schedule->endTime = $data['endTime'];
+            $schedule->save();
+            return response([
+                'message' => 'Schedule saved successfuly'
+            ], 200);
+        } catch (Exception $e) {
+            return response([
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
     public function getSchedules()
     {
@@ -50,6 +68,5 @@ class ScheduleRepository implements ScheduleRepositoryInterface
     }
     public function deleteSchedule($id)
     {
-        
     }
 }

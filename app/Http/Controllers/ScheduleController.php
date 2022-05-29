@@ -77,7 +77,8 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        return $this->repository->editSchedule($id, $data);
     }
 
     /**
