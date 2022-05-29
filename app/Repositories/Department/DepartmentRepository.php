@@ -29,16 +29,28 @@ class DepartmentRepository implements DepartmentRepositoryInterface
         }
     }
 
-    public function updateDepartment($data)
+    public function updateDepartment($id, $data)
     {
+        $dept = Department::find($id);
+        try {
+            if ($dept == null) {
+                throw new Exception('Department doesn\'t exist. Cannot be edited');
+            }
+
+            $dept->collegeName = $data['collegeName'] ?? $dept->collegeName;
+            $dept->collegeCode = $data['collegeCode'] ?? $dept->collegeCode;
+            $dept->save();
+        } catch (Exception $e) {
+            return response(['message' => $e->getMessage()], 400);
+        }
     }
     public function getAllDepartments()
     {
         try {
 
-            return Department::all();
+            return Department::with('programs', 'teachers');
         } catch (Exception $e) {
-            return response(['message' => $e->getMessage()], 401);
+            return response(['message' => $e->getMessage()], 400);
         }
     }
 

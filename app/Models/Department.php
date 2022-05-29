@@ -17,6 +17,11 @@ class Department extends Model
 
     public function teacher()
     {
-        return $this->hasMany(Teacher::class);
+        return $this->hasMany(Teacher::class, 'departmentID');
+    }
+
+    public function programs()
+    {
+        return $this->hasMany(Program::class, 'programID');
     }
 }

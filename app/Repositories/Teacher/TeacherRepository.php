@@ -26,6 +26,7 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function updateTeacher($data)
     {
+        //TODO: CREATE
     }
 
     public function getAllTeachers()
@@ -43,5 +44,6 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function deleteTeacher($id)
     {
+        //TODO: CREATE
     }
 }
