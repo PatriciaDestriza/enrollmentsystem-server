@@ -21,7 +21,7 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
                 throw new Exception('Student does not Exist. Cannot enroll');
             }
 
-            $termExists = AcademicTerm::find($data['termtID']);
+            $termExists = AcademicTerm::find($data['termID']);
             if (!is_null($termExists)) {
                 throw new Exception('Academic Term does not Exist. Cannot enroll');
             }
