@@ -20,4 +20,8 @@ class Program extends Model
     {
         return $this->belongsTo(Department::class, 'departmentID');
     }
+    public function blocks()
+    {
+        return $this->hasMany(Block::class, 'programID');
+    }
 }

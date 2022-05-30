@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getUsers();
     }
 
     /**
@@ -80,7 +80,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        return $this->repository->updateUser($id, $data);
     }
 
     /**
@@ -92,5 +93,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function logout()
+    {
+        return $this->repository->logout();
     }
 }

@@ -15,8 +15,13 @@ class Department extends Model
         'collegeCode'
     ];
 
-    public function teacher()
+    public function teachers()
     {
-        return $this->hasMany(Teacher::class);
+        return $this->hasMany(Teacher::class, 'departmentID');
+    }
+
+    public function programs()
+    {
+        return $this->hasMany(Program::class, 'departmentID');
     }
 }

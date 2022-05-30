@@ -9,9 +9,16 @@ class RoomRepository implements RoomRepositoryInterface
 {
     public function createRoom($data)
     {
-        $room = new Room();
 
         try {
+
+
+            $room = new Room();
+            $roomExists = Room::where('roomCode', '=', $data['roomCode'])->first();
+
+            if (!is_null($roomExists)) {
+                throw new Exception("Room code already exists. Cannot add a new room with the same code");
+            }
             $room->roomName = $data['roomName'];
             $room->roomCode = $data['roomCode'];
             $room->save();
@@ -21,8 +28,25 @@ class RoomRepository implements RoomRepositoryInterface
         }
     }
 
-    public function editRoom($id)
+    public function editRoom($id, $data)
     {
+        try {
+            $room = Room::find($id);
+            if (is_null($room)){
+                throw new Exception('Room does not exist. Cannot edit');
+            }
+
+            $room->roomName = $data['roomName'] ?? $room->roomName;
+            $room->roomCode = $data['roomCode'] ?? $room->roomCode;
+            $room->save();
+            return response([
+                'message' => 'Room edited successfully'
+            ]);
+        } catch (Exception $e) {
+            return response([
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
     public function getRooms()
     {
@@ -31,7 +55,7 @@ class RoomRepository implements RoomRepositoryInterface
             return response($rooms, 200);
         } catch (Exception $th) {
             return response([
-                'message' => 'Something went wrong'
+                'message' => $th->getMessage()
             ], 400);
         }
     }

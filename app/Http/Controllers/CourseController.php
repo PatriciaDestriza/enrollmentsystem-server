@@ -19,7 +19,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getCourses();
     }
 
     /**
@@ -40,7 +40,8 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->repository->createCourse($data);
     }
 
     /**
@@ -74,7 +75,8 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        return $this->repository->editCourse($id, $data);
     }
 
     /**

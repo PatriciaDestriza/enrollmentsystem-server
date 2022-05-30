@@ -9,6 +9,8 @@ use App\Repositories\AcademicYear\AcademicYearRepository;
 use App\Repositories\AcademicYear\AcademicYearRepositoryInterface;
 use App\Repositories\Block\BlockRepository;
 use App\Repositories\Block\BlockRepositoryInterface;
+use App\Repositories\BlocksCourses\BlocksCoursesRepository;
+use App\Repositories\BlocksCourses\BlocksCoursesRepositoryInterface;
 use App\Repositories\Course\CourseRepository;
 use App\Repositories\Course\CourseRepositoryInterface;
 use App\Repositories\Department\DepartmentRepository;
@@ -19,14 +21,17 @@ use App\Repositories\EnrolledStudents\EnrolledStudentRepository;
 use App\Repositories\EnrolledStudents\EnrolledStudentRepositoryInterface;
 use App\Repositories\Room\RoomRepository;
 use App\Repositories\Room\RoomRepositoryInterface;
+use App\Repositories\Schedule\ScheduleRepository;
 use App\Repositories\Schedule\ScheduleRepositoryInterface;
-use App\Repositories\Student\StudentRepository;
-use App\Repositories\Student\StudentRepositoryInterface;
+use App\Repositories\Students\StudentRepository;
+use App\Repositories\Students\StudentRepositoryInterface;
 use App\Repositories\Teacher\TeacherRepository;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\YearLevel\YearLevelRepository;
+use App\Repositories\YearLevel\YearLevelRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -47,9 +52,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(BlockRepositoryInterface::class, BlockRepository::class);
         $this->app->bind(CourseRepositoryInterface::class, CourseRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
-        $this->app->bind(ScheduleRepositoryInterface::class, RoomRepository::class);
+        $this->app->bind(ScheduleRepositoryInterface::class, ScheduleRepository::class);
         $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
         $this->app->bind(EnrolledStudentRepositoryInterface::class, EnrolledStudentRepository::class);
+        $this->app->bind(YearLevelRepositoryInterface::class, YearLevelRepository::class);
+        $this->app->bind(BlocksCoursesRepositoryInterface::class, BlocksCoursesRepository::class);
     }
 
     /**

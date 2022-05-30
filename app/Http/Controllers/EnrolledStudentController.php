@@ -19,7 +19,7 @@ class EnrolledStudentController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getEnrolledStudents();
     }
 
     /**
