@@ -86,6 +86,6 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        return $this->$repository->deleteSchedule($id);
+        return $this->repository->deleteSchedule($id);
     }
 }
