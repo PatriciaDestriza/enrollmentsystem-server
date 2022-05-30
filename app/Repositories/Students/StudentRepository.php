@@ -3,6 +3,7 @@
 namespace App\Repositories\Students;
 
 use App\Models\Student;
+use App\Models\User;
 use App\Repositories\User\UserRepositoryInterface;
 use Carbon\Carbon;
 use Exception;
@@ -70,7 +71,7 @@ class StudentRepository implements StudentRepositoryInterface
     public function editStudent($id, $data)
     {
         $user = Student::find($id);
-        if (is_null($user)){
+        if (is_null($user)) {
             throw new Exception('User does not exist. Cannot edit.');
         }
 
@@ -109,7 +110,20 @@ class StudentRepository implements StudentRepositoryInterface
     public function deleteStudent($id)
     {
         try {
-            //code...
+            $student = Student::find($id);
+            if (is_null($student)) {
+                throw new Exception('Student does not exist. Cannot delete.');
+            }
+            $user = User::find($student->user->id);
+            if (is_null($user)) {
+                throw new Exception('User connected to student does not exist. Cannot delete.');
+            }
+
+            $student->delete();
+            $user->delete();
+            return response([
+                'message' => 'Student Deleted'
+            ]);
         } catch (Exception $error) {
             return response([
                 'message' => $error->getMessage()
