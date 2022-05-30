@@ -75,7 +75,8 @@ class ProgramController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        return $this->repository->updateProgram($id, $data);
     }
 
     /**
@@ -86,6 +87,6 @@ class ProgramController extends Controller
      */
     public function destroy($id)
     {
-       return $this->$repository->deleteProgram($id);
+        return $this->repository->deleteProgram($id);
     }
 }

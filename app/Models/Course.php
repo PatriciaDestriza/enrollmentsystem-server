@@ -15,6 +15,20 @@ class Course extends Model
         'courseCode',
         'programID',
         'roomID',
-        'dateTime'
+        'scheduleID'
     ];
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'roomID');
+    }
+
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class, 'scheduleID');
+    }
+
+    public function teacher(){
+        return $this->belongsTo(Teacher::class, 'teacherID');
+    }
 }

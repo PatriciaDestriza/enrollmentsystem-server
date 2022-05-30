@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BlockController extends Controller
 {
-    private $repository
+    private $repository;
     public function __construct(BlockRepositoryInterface $repository)
     {
         $this->repository = $repository;
@@ -19,7 +19,7 @@ class BlockController extends Controller
      */
     public function index()
     {
-        //
+        return $this->repository->getBlocks();
     }
 
     /**
@@ -86,6 +86,6 @@ class BlockController extends Controller
      */
     public function destroy($id)
     {
-        return $repository->deleteBlock($id);
+        return $this->repository->deleteBlock($id);
     }
 }
