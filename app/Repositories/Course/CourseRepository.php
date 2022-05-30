@@ -1,8 +1,9 @@
 <?php
 
+namespace App\Repositories\Course;
+
 use App\Repositories\Course\CourseRepositoryInterface;
 
-namespace App\Repositories\Course;
 
 use App\Models\Course;
 use App\Models\Room;
@@ -69,10 +70,10 @@ class CourseRepository implements CourseRepositoryInterface
     {
         try {
             $courseExists = Course::find($id);
-            if (is_null($courseExists)){
+            if (is_null($courseExists)) {
                 throw new Exception('Course does not exist. Cannot edit');
             }
-            $teacherExists =Teacher::find($data['teacherID']);
+            $teacherExists = Teacher::find($data['teacherID']);
             $roomExists = Room::find($data['roomID']);
             $scheduleExists = Schedule::find($data['scheduleID']);
 
@@ -97,7 +98,6 @@ class CourseRepository implements CourseRepositoryInterface
             return response([
                 'message' => 'Course successfully edited'
             ], 200);
-
         } catch (Exception $error) {
             return response([
                 'message' => $error->getMessage()
