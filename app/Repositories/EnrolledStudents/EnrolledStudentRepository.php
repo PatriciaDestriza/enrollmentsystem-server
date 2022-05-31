@@ -48,7 +48,7 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
         } catch (Exception $error) {
             return response([
                 'message' => $error->getMessage()
-            ]);
+            ], 400);
         }
     }
     public function getEnrolledStudents()
