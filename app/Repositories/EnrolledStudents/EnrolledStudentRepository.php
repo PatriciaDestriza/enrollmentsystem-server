@@ -64,12 +64,6 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
     public function deleteEnrolledStudents($id)
     {
         try {
-        } catch (Exception $error) {
-        }
-    }
-    public function editEnrolledStudent($id)
-    {
-        try {
             $student = EnrolledStudent::find($id);
             if (is_null($student)) {
                 throw new Exception('Enrollment ID not found. cannot delete.');
@@ -83,5 +77,8 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
                 'message' => $error->getMessage()
             ], 400);
         }
+    }
+    public function editEnrolledStudent($id)
+    {
     }
 }
