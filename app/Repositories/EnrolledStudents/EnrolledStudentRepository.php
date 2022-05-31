@@ -17,7 +17,7 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
 
 
             $studentExists = Student::find($data['studentID']);
-            if (!is_null($studentExists)) {
+            if (is_null($studentExists)) {
                 throw new Exception('Student does not Exist. Cannot enroll');
             }
 
