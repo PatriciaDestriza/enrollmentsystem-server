@@ -95,7 +95,7 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
             $enrollee->blockID = $data['blockID'] ?? $enrollee->blockID ;
             $enrollee->save();
             return response([
-                'message' => 'Student enrolled successfully'
+                'message' => 'Student enrollment edited successfully'
             ]);
         } catch (Exception $error) {
             return response([
