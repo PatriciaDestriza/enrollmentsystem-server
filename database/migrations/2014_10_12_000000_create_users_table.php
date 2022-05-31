@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->enum('accountType', ['admin', 'student']);
             $table->string('universityID')->unique();
             $table->string('firstName');
-            $table->string('middleName');
+            $table->string('middleName')->nullable();
             $table->string('lastName');
             $table->date('birthDate');
             $table->string('address');
