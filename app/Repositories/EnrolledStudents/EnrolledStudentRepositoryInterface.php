@@ -9,4 +9,5 @@ interface  EnrolledStudentRepositoryInterface
     public function getEnrolledStudents();
     public function deleteEnrolledStudents($id);
     public function editEnrolledStudent($id, $data);
+    public function getSpecificStudent($id);
 }

@@ -90,9 +90,9 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
             }
 
             $enrollee->studentID = $data['studentID'] ?? $enrollee->studentID;
-            $enrollee->termID = $data['termID'] ?? $enrollee->termID ;
-            $enrollee->yearLevelID = $data['yearLevelID'] ?? $enrollee->yearLevelID ;
-            $enrollee->blockID = $data['blockID'] ?? $enrollee->blockID ;
+            $enrollee->termID = $data['termID'] ?? $enrollee->termID;
+            $enrollee->yearLevelID = $data['yearLevelID'] ?? $enrollee->yearLevelID;
+            $enrollee->blockID = $data['blockID'] ?? $enrollee->blockID;
             $enrollee->save();
             return response([
                 'message' => 'Student enrollment edited successfully'
@@ -102,5 +102,10 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
                 'message' => $error->getMessage()
             ], 400);
         }
+    }
+
+    public function getSpecificStudent($id)
+    {
+        return Student::find($id)::with('user')->get();
     }
 }
