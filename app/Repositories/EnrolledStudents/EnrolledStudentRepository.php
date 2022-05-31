@@ -22,17 +22,17 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
             }
 
             $termExists = AcademicTerm::find($data['termID']);
-            if (!is_null($termExists)) {
+            if (is_null($termExists)) {
                 throw new Exception('Academic Term does not Exist. Cannot enroll');
             }
 
             $yrLvlExists = YearLevel::find($data['yearLevelID']);
-            if (!is_null($yrLvlExists)) {
+            if (is_null($yrLvlExists)) {
                 throw new Exception('Year level does not Exist. Cannot enroll');
             }
 
             $blockExists = Block::find($data['blockID']);
-            if (!is_null($blockExists)) {
+            if (is_null($blockExists)) {
                 throw new Exception('Block does not Exist. Cannot enroll');
             }
 
