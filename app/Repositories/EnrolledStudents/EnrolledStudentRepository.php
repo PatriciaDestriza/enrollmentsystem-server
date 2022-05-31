@@ -78,7 +78,29 @@ class EnrolledStudentRepository implements EnrolledStudentRepositoryInterface
             ], 400);
         }
     }
-    public function editEnrolledStudent($id)
+    public function editEnrolledStudent($id, $data)
     {
+        try {
+
+
+            $enrollee = EnrolledStudent::find($id);
+            $studentExists = Student::find($data['studentID']);
+            if (is_null($studentExists)) {
+                throw new Exception('Student does not Exist. Cannot enroll');
+            }
+
+            $enrollee->studentID = $data['studentID'] ?? $enrollee->studentID;
+            $enrollee->termID = $data['termID'] ?? $enrollee->termID ;
+            $enrollee->yearLevelID = $data['yearLevelID'] ?? $enrollee->yearLevelID ;
+            $enrollee->blockID = $data['blockID'] ?? $enrollee->blockID ;
+            $enrollee->save();
+            return response([
+                'message' => 'Student enrolled successfully'
+            ]);
+        } catch (Exception $error) {
+            return response([
+                'message' => $error->getMessage()
+            ], 400);
+        }
     }
 }
